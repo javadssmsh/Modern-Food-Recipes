@@ -34,11 +34,6 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-
-    compileOptions {
-        sourceCompatibility 1.8
-        targetCompatibility 1.8
-    }
 }
 
 dependencies {
@@ -108,7 +103,7 @@ dependencies {
 
     // Shimmer
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
-//    implementation 'com.todkars:shimmer-recyclerview:0.4.0'
+    implementation 'com.todkars:shimmer-recyclerview:0.4.0'
 
     // Jsoup
     implementation 'org.jsoup:jsoup:1.13.1'
