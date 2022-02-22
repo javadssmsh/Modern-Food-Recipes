@@ -1,7 +1,7 @@
 package com.example.modernfoodrecipes.di
 
-import com.example.modernfoodrecipes.Constants
-import com.example.modernfoodrecipes.FoodRecipesApi
+import com.example.modernfoodrecipes.util.Constants
+import com.example.modernfoodrecipes.data.network.FoodRecipesApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
