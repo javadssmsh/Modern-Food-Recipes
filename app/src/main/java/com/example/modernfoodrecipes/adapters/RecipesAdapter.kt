@@ -1,12 +1,13 @@
 package com.example.modernfoodrecipes.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.modernfoodrecipes.databinding.RecipesRowLayoutBinding
 import com.example.modernfoodrecipes.models.FoodRecipe
 import com.example.modernfoodrecipes.models.Result
+import com.example.modernfoodrecipes.util.RecipesDiffUtil
 
 class RecipesAdapter : RecyclerView.Adapter<RecipesAdapter.RecipesViewHolder>() {
 
@@ -17,8 +18,8 @@ class RecipesAdapter : RecyclerView.Adapter<RecipesAdapter.RecipesViewHolder>() 
     }
 
     override fun onBindViewHolder(holder: RecipesViewHolder, position: Int) {
-        val currentResult = recipes[position]
-        holder.bind(currentResult)
+        val currentRecipe = recipes[position]
+        holder.bind(currentRecipe)
     }
 
     override fun getItemCount(): Int {
@@ -43,7 +44,10 @@ class RecipesAdapter : RecyclerView.Adapter<RecipesAdapter.RecipesViewHolder>() 
     }
 
     fun sendData(newRecipe: FoodRecipe) {
+        val recipesDiffUtil = RecipesDiffUtil(recipes, newRecipe.results)
+        val diffUtilResult = DiffUtil.calculateDiff(recipesDiffUtil)
         recipes = newRecipe.results
+        diffUtilResult.dispatchUpdatesTo(this)
     }
 
 }
