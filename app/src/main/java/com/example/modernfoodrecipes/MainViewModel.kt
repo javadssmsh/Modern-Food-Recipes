@@ -4,17 +4,20 @@ import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.modernfoodrecipes.data.Repository
 import com.example.modernfoodrecipes.models.FoodRecipe
 import com.example.modernfoodrecipes.util.NetworkResult
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.Response
 import java.lang.Exception
 import javax.inject.Inject
 
+@HiltViewModel
 class MainViewModel @Inject constructor(
     private val repository: Repository,
     application: Application
@@ -34,11 +37,15 @@ class MainViewModel @Inject constructor(
             try {
                 val response = repository.remoteDataSource.getRecipes(queries)
                 recipesResponse.value = handleRecipesFoodResponse(response)
+                Log.d("getRecipesSafeCall", "getRecipesSafeCall state is :  ok ")
             } catch (e: Exception) {
                 recipesResponse.value = NetworkResult.Error(e.message)
+                Log.d("getRecipesSafeCall", "getRecipesSafeCall state is :  failed ")
+                Log.d("getRecipesSafeCall", "getRecipesSafeCall state is : " + e.message.toString())
             }
         } else {
             recipesResponse.value = NetworkResult.Error("No Internet Connection")
+            Log.d("getRecipesSafeCall", "getRecipesSafeCall state is :  no connection ")
         }
     }
 
