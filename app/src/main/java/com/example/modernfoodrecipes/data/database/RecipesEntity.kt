@@ -1,4 +1,4 @@
-package com.example.modernfoodrecipes
+package com.example.modernfoodrecipes.data.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

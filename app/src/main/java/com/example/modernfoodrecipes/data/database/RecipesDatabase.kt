@@ -1,4 +1,4 @@
-package com.example.modernfoodrecipes
+package com.example.modernfoodrecipes.data.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
@@ -6,6 +6,6 @@ import androidx.room.RoomDatabase
 @Database(entities = [RecipesEntity::class], version = 1, exportSchema = false)
 abstract class RecipesDatabase : RoomDatabase() {
 
-    abstract fun recipesDao():RecipesDao
+    abstract fun recipesDao(): RecipesDao
 
 }
