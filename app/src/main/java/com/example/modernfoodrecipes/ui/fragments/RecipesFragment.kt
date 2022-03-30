@@ -16,6 +16,7 @@ import com.example.modernfoodrecipes.R
 import com.example.modernfoodrecipes.adapters.RecipesAdapter
 import com.example.modernfoodrecipes.util.Constants
 import com.example.modernfoodrecipes.util.NetworkResult
+import com.example.modernfoodrecipes.util.observeOnce
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_recipes.view.*
 import kotlinx.coroutines.launch
@@ -49,9 +50,9 @@ class RecipesFragment : Fragment() {
 
     private fun readDatabase() {
         lifecycleScope.launch {
-            mainViewModel.readRecipes.observe(viewLifecycleOwner) { database ->
+            mainViewModel.readRecipes.observeOnce(viewLifecycleOwner) { database ->
                 if (database.isNotEmpty()) {
-                    Log.d("Recipes Fragment", "readDatabase called  ")
+                    Log.d("dataState", "readDatabase called  ")
                     adapter.sendData(database[0].foodRecipe)
                     hideShimmerEffect()
                 } else {
@@ -62,7 +63,7 @@ class RecipesFragment : Fragment() {
     }
 
     private fun requestApiData() {
-        Log.d("Recipes Fragment", "requestApiData called  ")
+        Log.d("dataState", "requestApiData called  ")
         mainViewModel.getRecipes(applyQueries())
         mainViewModel.recipesResponse.observe(viewLifecycleOwner) { response ->
             when (response) {
