@@ -6,6 +6,9 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.util.Log
 import androidx.lifecycle.*
+import com.example.domain.NetworkResultDomain
+import com.example.domain.models.FoodRecipeDomain
+import com.example.domain.usecases.GetHomeRecipesUseCase
 import com.example.modernfoodrecipes.data.Repository
 import com.example.modernfoodrecipes.data.database.RecipesEntity
 import com.example.modernfoodrecipes.models.FoodRecipe
@@ -20,6 +23,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val repository: Repository,
+    private val getHomeRecipesUseCase: GetHomeRecipesUseCase,
     application: Application
 ) : AndroidViewModel(application) {
 
@@ -40,7 +44,33 @@ class MainViewModel @Inject constructor(
 
     fun getRecipes(queries: Map<String, String>) {
         viewModelScope.launch {
-            getRecipesSafeCall(queries)
+//            getRecipesSafeCall(queries)
+            getRecipesSafeCallClean(queries)
+        }
+    }
+
+    private suspend fun getRecipesSafeCallClean(queries: Map<String, String>) {
+        recipesResponse.value = NetworkResult.Loading()
+        if (hasInternetConnection()) {
+            try {
+//                val response = repository.remote.getRecipes(queries)
+                val response = getHomeRecipesUseCase.invoke(queries)
+
+                recipesResponse.value = handleRecipesFoodResponseClean(response)
+
+                val foodRecipe = recipesResponse.value!!.data
+                if (foodRecipe != null) {
+                    offlineCacheRecipe(foodRecipe)
+                }
+                Log.d("getRecipesSafeCall", "getRecipesSafeCall state is :  ok ")
+            } catch (e: Exception) {
+                recipesResponse.value = NetworkResult.Error(e.message)
+                Log.d("getRecipesSafeCall", "getRecipesSafeCall state is :  failed ")
+                Log.d("getRecipesSafeCall", "getRecipesSafeCall state is : " + e.message.toString())
+            }
+        } else {
+            recipesResponse.value = NetworkResult.Error("No Internet Connection")
+            Log.d("getRecipesSafeCall", "getRecipesSafeCall state is :  no connection ")
         }
     }
 
@@ -89,6 +119,28 @@ class MainViewModel @Inject constructor(
             else -> {
                 return NetworkResult.Error(response.message())
             }
+        }
+    }
+
+    private fun handleRecipesFoodResponseClean(response: NetworkResultDomain<FoodRecipeDomain>): NetworkResult<FoodRecipe>? {
+        when (response) {
+            is NetworkResultDomain.Success -> {
+                response.data.let {
+                    try {
+                        val foodRecipe: FoodRecipe = it!!.toApp()
+                        return NetworkResult.Success(foodRecipe)
+                    } catch (e: Exception) {
+                        return NetworkResult.Error(e.message)
+                    }
+                }
+            }
+            is NetworkResultDomain.Error -> {
+                return NetworkResult.Error(response.message)
+            }
+            is NetworkResultDomain.Loading -> {
+                return NetworkResult.Loading()
+            }
+
         }
     }
 

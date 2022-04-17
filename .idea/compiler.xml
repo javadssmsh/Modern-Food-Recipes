@@ -3,6 +3,7 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="1.7">
       <module name="ModernFoodRecipes.app" target="11" />
+      <module name="ModernFoodRecipes.data" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

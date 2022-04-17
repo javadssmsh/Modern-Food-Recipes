@@ -20,3 +20,4 @@ import org.gradle.api.initialization.resolve.RepositoriesMode
 rootProject.name = "ModernFoodRecipes"
 include ':app'
 include ':domain'
+include ':data'

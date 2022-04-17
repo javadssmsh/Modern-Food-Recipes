@@ -1,5 +1,7 @@
 package com.example.modernfoodrecipes.di
 
+import com.example.data.api.FoodRecipesApiData
+import com.example.data.repositories.HomeRepository
 import com.example.modernfoodrecipes.util.Constants
 import com.example.modernfoodrecipes.data.network.FoodRecipesApi
 import dagger.Module
@@ -50,6 +52,12 @@ object NetworkModule {
     @Provides
     fun provideApiService(retrofit: Retrofit): FoodRecipesApi {
         return retrofit.create(FoodRecipesApi::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideApiServiceData(retrofit: Retrofit): FoodRecipesApiData {
+        return retrofit.create(FoodRecipesApiData::class.java)
     }
 
 }
