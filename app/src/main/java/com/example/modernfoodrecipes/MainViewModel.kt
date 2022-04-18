@@ -6,7 +6,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.util.Log
 import androidx.lifecycle.*
-import com.example.domain.NetworkResultDomain
+import com.example.domain.base.ResultDomain
 import com.example.domain.models.FoodRecipeDomain
 import com.example.domain.usecases.GetHomeRecipesUseCase
 import com.example.modernfoodrecipes.data.Repository
@@ -122,9 +122,9 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    private fun handleRecipesFoodResponseClean(response: NetworkResultDomain<FoodRecipeDomain>): NetworkResult<FoodRecipe>? {
+    private fun handleRecipesFoodResponseClean(response: ResultDomain<FoodRecipeDomain>): NetworkResult<FoodRecipe>? {
         when (response) {
-            is NetworkResultDomain.Success -> {
+            is ResultDomain.Success -> {
                 response.data.let {
                     try {
                         val foodRecipe: FoodRecipe = it!!.toApp()
@@ -134,10 +134,10 @@ class MainViewModel @Inject constructor(
                     }
                 }
             }
-            is NetworkResultDomain.Error -> {
+            is ResultDomain.Error -> {
                 return NetworkResult.Error(response.message)
             }
-            is NetworkResultDomain.Loading -> {
+            is ResultDomain.Loading -> {
                 return NetworkResult.Loading()
             }
 
