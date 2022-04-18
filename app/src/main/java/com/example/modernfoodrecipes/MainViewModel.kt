@@ -137,7 +137,7 @@ class MainViewModel @Inject constructor(
             is ResultDomain.Error -> {
                 return NetworkResult.Error(response.message)
             }
-            is ResultDomain.Loading -> {
+            else -> {
                 return NetworkResult.Loading()
             }
 

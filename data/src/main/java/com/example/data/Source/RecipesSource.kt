@@ -20,7 +20,7 @@ class RecipesSource @Inject constructor(
                 ResultDomain.Success(body)
             }
             else -> {
-                ResultDomain.Error("there is a problem")
+                ResultDomain.Error(response.message().toString())
             }
         }
     }
