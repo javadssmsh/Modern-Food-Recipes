@@ -1,0 +1,304 @@
+/**
+ * Shared file between modules so that they can all use the same dependencies.
+ **/
+
+ext.deps = [:]
+ext.versions = [:]
+
+def versions = [:]
+versions.android_gradle_plugin = '4.2.1'
+versions.annotations = "1.2.0"
+//kotlin
+versions.kotlin = "1.5.0"
+versions.core_ktx = "1.5.0"
+versions.activity_ktx = "1.2.3"
+versions.fragment_ktx = "1.3.4"
+//Google & Firebase
+versions.playservice_gradle_plugin = "4.3.8"
+versions.playservice_auth = "17.0.0"
+versions.firebase = "28.0.1"
+versions.crashlytics_gradle_plugin = "2.4.1"
+//App Metrica
+versions.metrica = "3.16.2"
+//UI
+versions.appcompat = "1.3.0"
+versions.material = "1.1.0"
+versions.vector = "1.1.0"
+versions.browser = "1.3.0"
+versions.cardview = "1.0.0"
+versions.recyclerview = "1.2.1"
+versions.viewpager = "1.0.0"
+versions.constraint_layout = "2.0.4"
+versions.otp_view = "2.1.2"
+versions.material_dialog = "3.3.0"
+versions.material_rey = "1.3.1"
+versions.shaped_layout = "1.4.7"
+versions.ratingbar = "1.4.0"
+versions.lottie = "3.7.0"
+versions.chat_bubble = "1.1.0"
+//Animation
+versions.yoyo = "2.4"
+//DI
+versions.hilt = "2.41"
+versions.hilt_androidx = "1.0.0-alpha01"
+//Architecture Component
+versions.lifecycle = "2.3.0"
+versions.combine_livedata = "1.2.1"
+//HTTP Requests
+versions.retrofit = "2.6.4"
+versions.logging_interceptor = "3.10.0"
+versions.gson = "2.8.6"
+//Network connectivity
+versions.network_connection = "1.0.4"
+//Database
+versions.room = "2.3.0"
+//Cache
+versions.cache = "0.0.18-SNAPSHOT"
+//Async
+versions.coroutines = "1.5.0"
+//Image Loading
+versions.glide = "4.7.1"
+//Exo PLayer
+versions.exo_player = "2.15.1"
+// POD chat
+versions.chat = "0.9.13.0-light"
+versions.eventbus = "3.2.0"
+// permissions
+versions.dexter = "6.2.2"
+//voice
+versions.voice_recorder = "1.7.0"
+versions.voice_wave = "0.9.2"
+//video view
+versions.video_layout = "1.3"
+
+//Crash Reporting library
+versions.crash_reporter = "1.1.0"
+// Logger
+versions.logger = "2.2.0"
+//Metrix
+versions.metrix = "1.1.5"
+
+versions.multidex = "2.0.1"
+
+//UNIT TEST
+versions.junit = "4.12"
+versions.androidx_test_core = "1.2.0"
+versions.arch_test = "2.1.0"
+versions.androidx_test_junit = "1.1.1"
+versions.espresso = "3.2.0"
+versions.robolectric = "4.3.1"
+versions.mockito = "2.8.9"
+versions.coroutines_test = "1.4.1"
+versions.hamcrest = "2.2.0"
+
+// java.inject
+versions.javax = "1"
+
+versions.material_component = "1.3.0-alpha03"
+
+versions.coordinatorlayout = "1.1.0"
+
+versions.navigation_fragment = "2.3.0"
+versions.navigation_ui = "2.3.0"
+
+versions.databinding_compiler = "3.2.0-alpha10"
+versions.databinding_common = "4.0.2"
+
+versions.datastore = "1.0.0-alpha01"
+
+versions.coil = "0.13.0"
+
+versions.gson = "2.8.6"
+
+versions.shimmer = "0.5.0"
+versions.shimmer_recyvlerview = "0.4.1"
+
+versions.jsoup = "1.13.1"
+
+versions.lifecycle_extention = "2.2.0"
+
+
+def build_versions = [:]
+build_versions.min_sdk = 19
+build_versions.compile_sdk = 30
+build_versions.target_sdk = 30
+build_versions.build_tools = "30.0.2"
+ext.build_versions = build_versions
+
+
+
+def deps = [:]
+deps.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_gradle_plugin"
+deps.kotlin_gradle_plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+
+
+// javax inject
+def javax = [:]
+deps.javax_inject = "javax.inject:javax.inject:$versions.javax"
+
+
+deps.material_component = "com.google.android.material:material:$versions.material_component"
+
+deps.coordinatorlayout = "androidx.coordinatorlayout:coordinatorlayout:$versions.coordinatorlayout"
+
+deps.navigation_fragment = "androidx.navigation:navigation-fragment-ktx:$versions.navigation_fragment"
+deps.navigation_ui = "androidx.navigation:navigation-ui-ktx:$versions.navigation_ui"
+
+deps.databinding_compiler = "com.android.databinding:compiler:$versions.databinding_compiler"
+deps.databinding_common = "androidx.databinding:databinding-common:$versions.databinding_common"
+
+deps.datastore = "androidx.datastore:datastore-preferences:$versions.datastore"
+
+deps.coil = "io.coil-kt:coil:$versions.coil"
+
+deps.gson = "com.google.code.gson:gson:$versions.gson"
+
+deps.shimmer = "com.facebook.shimmer:shimmer:$versions.shimmer"
+deps.shimmer_recyvlerview = "com.todkars:shimmer-recyclerview:$versions.shimmer_recyvlerview"
+
+deps.jsoup = "org.jsoup:jsoup:$versions.jsoup"
+
+
+//PlayService & Firebase
+deps.playservice_gradle_plugin = "com.google.gms:google-services:$versions.playservice_gradle_plugin"
+deps.playservice_auth = "com.google.android.gms:play-services-auth:$versions.playservice_auth"
+deps.firebase = "com.google.firebase:firebase-bom:$versions.firebase"
+deps.firebase_analytics = "com.google.firebase:firebase-analytics"
+deps.firebase_messaging = "com.google.firebase:firebase-messaging"
+deps.crashlytics_gradle_plugin = "com.google.firebase:firebase-crashlytics-gradle:$versions.crashlytics_gradle_plugin"
+deps.firebase_crashlytics = "com.google.firebase:firebase-crashlytics"
+
+//Metrix
+deps.metrix = "ir.metrix:metrix:$versions.metrix"
+
+deps.annotations = "androidx.annotation:annotation:$versions.annotations"
+deps.app_compat = "androidx.appcompat:appcompat:$versions.appcompat"
+
+deps.cardview = "androidx.cardview:cardview:$versions.cardview"
+deps.constraint_layout = "androidx.constraintlayout:constraintlayout:$versions.constraint_layout"
+deps.recyclerview = "androidx.recyclerview:recyclerview:$versions.recyclerview"
+deps.viewpager = "androidx.viewpager2:viewpager2:$versions.viewpager"
+deps.material = "com.google.android.material:material:$versions.material"
+deps.browser = "androidx.browser:browser:$versions.browser"
+deps.vector = "androidx.vectordrawable:vectordrawable:$versions.vector"
+deps.otp_view = "com.github.mukeshsolanki:android-otpview-pinview:$versions.otp_view"
+deps.material_dialog = "com.afollestad.material-dialogs:core:$versions.material_dialog"
+deps.material_rey = "com.github.rey5137:material:$versions.material_rey"
+deps.shaped_layout = "com.github.florent37:shapeofview:$versions.shaped_layout"
+deps.ratingbar = "me.zhanghai.android.materialratingbar:library:$versions.ratingbar"
+deps.lottie = "com.airbnb.android:lottie:$versions.lottie"
+deps.chat_bubble = "rouchuan.bubbleview:bubblelayout:$versions.chat_bubble"
+
+deps.yoyo = "com.daimajia.androidanimations:library:${versions.yoyo}@aar"
+deps.yoyo_easing = "com.daimajia.easing:library:${versions.yoyo}@aar"
+
+//voice
+deps.voice_recorder = "com.github.piasy:rxandroidaudio:$versions.voice_recorder"
+deps.voice_player = "com.github.piasy:AudioProcessor:$versions.voice_recorder"
+deps.voice_wave = "com.github.alxrm:audiowave-progressbar:$versions.voice_wave"
+
+deps.video_layout = "com.github.AsynctaskCoffee:VideoLayout:$versions.video_layout"
+deps.exo_player = "com.google.android.exoplayer:exoplayer:$versions.exo_player"
+
+
+deps.kotlin = "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
+deps.core_ktx = "androidx.core:core-ktx:$versions.core_ktx"
+deps.activity_ktx = "androidx.activity:activity-ktx:$versions.activity_ktx"
+deps.fragment_ktx = "androidx.fragment:fragment-ktx:$versions.fragment_ktx"
+
+def hilt = [:]
+hilt.runtime = "com.google.dagger:hilt-android:$versions.hilt"
+hilt.compiler = "com.google.dagger:hilt-android-compiler:$versions.hilt"
+hilt.androidx = "androidx.hilt:hilt-lifecycle-viewmodel:$versions.hilt_androidx"
+hilt.androidx_compiler = "androidx.hilt:hilt-compiler:$versions.hilt_androidx"
+deps.hilt = hilt
+
+deps.hilt_plugin = "com.google.dagger:hilt-android-gradle-plugin:$versions.hilt"
+
+def lifecycle = [:]
+lifecycle.runtime = "androidx.lifecycle:lifecycle-runtime:$versions.lifecycle"
+lifecycle.java8 = "androidx.lifecycle:lifecycle-common-java8:$versions.lifecycle"
+lifecycle.compiler = "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle"
+lifecycle.viewmodel_ktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle"
+lifecycle.livedata_ktx = "androidx.lifecycle:lifecycle-livedata-ktx:$versions.lifecycle"
+lifecycle.combine_livedata = "com.github.Zhuinden:livedata-combinetuple-kt:$versions.combine_livedata"
+lifecycle.extention = "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle_extention"
+deps.lifecycle = lifecycle
+
+def retrofit = [:]
+retrofit.runtime = "com.squareup.retrofit2:retrofit:$versions.retrofit"
+retrofit.gson = "com.squareup.retrofit2:converter-gson:$versions.retrofit"
+retrofit.mock = "com.squareup.retrofit2:retrofit-mock:$versions.retrofit"
+deps.retrofit = retrofit
+
+deps.okhttp_logging_interceptor = "com.squareup.okhttp3:logging-interceptor:$versions.logging_interceptor"
+
+deps.network_connection = "ru.beryukhov:flowreactivenetwork:$versions.network_connection"
+
+// chat
+deps.chat = "com.github.FanapSoft:podchat:$versions.chat"
+deps.eventbus = "org.greenrobot:eventbus:$versions.eventbus"
+
+def room = [:]
+room.runtime = "androidx.room:room-runtime:$versions.room"
+room.compiler = "androidx.room:room-compiler:$versions.room"
+room.ktx = "androidx.room:room-ktx:$versions.room"
+room.testing = "androidx.room:room-testing:$versions.room"
+deps.room = room
+
+//cache
+deps.cache = "com.iainconnor:objectcache:$versions.cache"
+
+def coroutines = [:]
+coroutines.core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutines"
+coroutines.android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines"
+deps.coroutines = coroutines
+
+def glide = [:]
+glide.runtime = "com.github.bumptech.glide:glide:$versions.glide"
+glide.compiler = "com.github.bumptech.glide:compiler:$versions.glide"
+deps.glide = glide
+
+deps.dexter = "com.karumi:dexter:$versions.dexter"
+
+deps.crash_reporter = "com.balsikandar.android:crashreporter:$versions.crash_reporter"
+deps.logger = "com.orhanobut:logger:$versions.logger"
+
+//test
+def test = [:]
+test.junit = "junit:junit:$versions.junit"
+test.arch_test = "androidx.arch.core:core-testing:$versions.arch_test"
+test.androidx_test_core = "androidx.test:core-ktx:$versions.androidx_test_core"
+test.androidx_test_junit = "androidx.test.ext:junit-ktx:$versions.androidx_test_junit"
+test.robolectric = "org.robolectric:robolectric:$versions.robolectric"
+test.espresso = "androidx.test.espresso:espresso-core:$versions.espresso"
+test.coroutines_test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$versions.coroutines_test"
+test.mockk = "io.mockk:mockk:1.10.0"
+//test.hamcrest = "org.hamcrest:hamcrest-all:$versions.hamcrest"
+deps.test = test
+
+ext.deps = deps
+ext.versions = versions
+
+//Repositories
+static def addRepos(RepositoryHandler handler) {
+    handler.google()
+    handler.mavenCentral()
+    handler.jcenter()
+    handler.maven { url "https://jitpack.io" }
+
+    handler.maven {
+        url 'https://maven.pkg.github.com/FanapSoft/pod-chat-android-sdk'
+        credentials {
+            username = '29752412'
+            password = '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'
+        }
+    }
+
+    // pod chat(SafeRoom)
+    handler.maven { url "https://s3.amazonaws.com/repo.commonsware.com" }
+    // sound recorder library
+    handler.maven { url "http://dl.bintray.com/piasy/maven" }
+}
+
+ext.addRepos = this.&addRepos
