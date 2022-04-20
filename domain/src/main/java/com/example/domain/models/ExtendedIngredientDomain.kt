@@ -1,6 +1,5 @@
 package com.example.domain.models
 
-import com.google.gson.annotations.SerializedName
 
 data class ExtendedIngredientDomain(
     val amount: Double,

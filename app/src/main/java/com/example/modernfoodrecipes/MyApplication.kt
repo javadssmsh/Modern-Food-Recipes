@@ -11,8 +11,7 @@ class MyApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-
-        CheckConnectivityModule.initialize(applicationContext)
-
+        
+        com.example.connectivitymanagermodule.CheckConnectivityModule.initialize(applicationContext)
     }
 }

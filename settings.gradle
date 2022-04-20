@@ -21,3 +21,4 @@ rootProject.name = "ModernFoodRecipes"
 include ':app'
 include ':domain'
 include ':data'
+include ':ConnectivityManagerModule'
