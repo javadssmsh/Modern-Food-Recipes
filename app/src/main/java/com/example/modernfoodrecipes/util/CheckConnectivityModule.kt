@@ -17,20 +17,32 @@ import javax.net.SocketFactory
 object CheckConnectivityModule {
 
 
-    val hasInternet = MutableLiveData<Boolean>(false)
-    val hasConnection = MutableLiveData<Boolean>(false)
+    private var hasInternet: Boolean = false
+    private var hasConnection: Boolean = false
+
 
     fun initialize(context: Context) {
         val connectionLiveData = ConnectionLiveData(context)
         connectionLiveData.observeForever {
-            Log.d("CheckConnectivityModule", "initialize :  $it")
-            hasConnection.value = it
-            if (it) {
-                hasInternet.value = runCommand()
+            Log.d("CheckConnectivityModule", "hasConnection :  $it")
+            hasConnection = it
+            hasInternet = if (it) {
+                runCommand()
             } else {
-                hasInternet.value = false
+                false
             }
+            Log.d("CheckConnectivityModule", "hasInternet :  $hasInternet")
+        }
+    }
 
+    fun checkHasConnectionAndInternet(): ConnectivityState {
+        return if (!hasConnection) {
+            ConnectivityState.NOCONNECTION
+        } else {
+            if (hasInternet)
+                ConnectivityState.HASINTERNET
+            else
+                ConnectivityState.NOINTERNET
         }
     }
 
@@ -110,11 +122,15 @@ object CheckConnectivityModule {
             val mExitValue = mIpAddrProcess.waitFor()
             mExitValue == 0
         } catch (e: Exception) {
-            hasConnection.value!!
+            hasConnection
         }
     }
 
-    fun execute(socketFactory: SocketFactory): Boolean {
+    enum class ConnectivityState {
+        NOCONNECTION, HASINTERNET, NOINTERNET
+    }
+
+    private fun execute(socketFactory: SocketFactory): Boolean {
         return try {
             val socket = socketFactory.createSocket() ?: throw IOException("Socket is null.")
             socket.connect(InetSocketAddress("8.8.8.8", 53), 1500)

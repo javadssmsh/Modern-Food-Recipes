@@ -14,13 +14,5 @@ class MyApplication : Application() {
 
         CheckConnectivityModule.initialize(applicationContext)
 
-        CheckConnectivityModule.hasConnection.observeForever {
-            Log.d("CheckConnectivityModule", "hasConnection :  $it")
-        }
-
-        CheckConnectivityModule.hasInternet.observeForever {
-            Log.d("CheckConnectivityModule", "onCreate: $it")
-        }
-
     }
 }
