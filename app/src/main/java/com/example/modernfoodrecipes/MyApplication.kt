@@ -2,8 +2,7 @@ package com.example.modernfoodrecipes
 
 import android.app.Application
 import android.util.Log
-import androidx.lifecycle.Observer
-import com.example.modernfoodrecipes.util.ConnectionLiveData
+import com.example.modernfoodrecipes.util.CheckConnectivityModule
 import dagger.hilt.android.HiltAndroidApp
 
 
@@ -13,9 +12,15 @@ class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        val connectionLiveData = ConnectionLiveData(applicationContext)
-        connectionLiveData.observeForever {
-            Log.d("observeForever", "connectionLiveData state  :  $it")
+        CheckConnectivityModule.initialize(applicationContext)
+
+        CheckConnectivityModule.hasConnection.observeForever {
+            Log.d("CheckConnectivityModule", "hasConnection :  $it")
         }
+
+        CheckConnectivityModule.hasInternet.observeForever {
+            Log.d("CheckConnectivityModule", "onCreate: $it")
+        }
+
     }
 }
