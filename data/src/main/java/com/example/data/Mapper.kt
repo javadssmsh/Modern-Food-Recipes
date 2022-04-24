@@ -1,5 +1,6 @@
 package com.example.data
 
+import android.util.Log
 import com.example.data.models.ExtendedIngredientData
 import com.example.data.models.FoodRecipeData
 import com.example.data.models.ResultData
@@ -54,8 +55,15 @@ fun FoodRecipeData.toDomain(): FoodRecipeDomain {
 
 fun mapResultDataToDomain(foodRecipeDataList: List<ResultData>): List<ResultDomain> {
     val foodRecipeDomainList: ArrayList<ResultDomain> = ArrayList()
+    var count = 0
     for (foodRecipe in foodRecipeDataList) {
-        foodRecipeDomainList.add(foodRecipe.toDomain())
+        Log.d("javad", "mapResultDataToDomain: +$count ")
+        count++
+        try {
+            foodRecipeDomainList.add(foodRecipe.toDomain())
+        } catch (e: Exception) {
+            continue
+        }
     }
     return foodRecipeDomainList
 }
