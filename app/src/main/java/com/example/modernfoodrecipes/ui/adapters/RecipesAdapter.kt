@@ -1,4 +1,4 @@
-package com.example.modernfoodrecipes.adapters
+package com.example.modernfoodrecipes.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

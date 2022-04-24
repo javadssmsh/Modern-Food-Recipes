@@ -1,4 +1,4 @@
-package com.example.modernfoodrecipes.bindingadapters
+package com.example.modernfoodrecipes.ui.bindingadapters
 
 import android.view.View
 import android.widget.ImageView

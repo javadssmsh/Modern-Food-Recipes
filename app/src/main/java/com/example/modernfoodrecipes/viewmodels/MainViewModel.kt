@@ -1,4 +1,4 @@
-package com.example.modernfoodrecipes
+package com.example.modernfoodrecipes.viewmodels
 
 import android.app.Application
 import android.content.Context
@@ -12,6 +12,7 @@ import com.example.domain.usecases.GetHomeRecipesUseCase
 import com.example.modernfoodrecipes.data.Repository
 import com.example.modernfoodrecipes.data.database.RecipesEntity
 import com.example.modernfoodrecipes.models.FoodRecipe
+import com.example.modernfoodrecipes.toApp
 import com.example.modernfoodrecipes.util.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

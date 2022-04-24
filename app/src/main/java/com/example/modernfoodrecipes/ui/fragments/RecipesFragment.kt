@@ -2,7 +2,6 @@ package com.example.modernfoodrecipes.ui.fragments
 
 import android.os.Bundle
 import android.util.Log
-import android.view.ContextMenu
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,9 +10,9 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.modernfoodrecipes.MainViewModel
+import com.example.modernfoodrecipes.viewmodels.MainViewModel
 import com.example.modernfoodrecipes.R
-import com.example.modernfoodrecipes.adapters.RecipesAdapter
+import com.example.modernfoodrecipes.ui.adapters.RecipesAdapter
 import com.example.modernfoodrecipes.util.Constants
 import com.example.modernfoodrecipes.util.NetworkResult
 import com.example.modernfoodrecipes.util.observeOnce
