@@ -9,18 +9,26 @@ import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import java.io.IOException
 import java.net.InetSocketAddress
 import javax.net.SocketFactory
 
+
+/** check an Internet connection.
+ * @author javad shirkhani
+ * @version 1.0
+ */
 object CheckConnectivityModule {
 
 
     private var hasInternet: Boolean = false
     private var hasConnection: Boolean = false
 
-
+    /**
+     * This method have to use in application class.
+     * Don't forget to initialize class using this method
+     * @param context use application context if you want to observe Internet connection in whole application
+     */
     fun initialize(context: Context) {
         val connectionLiveData = ConnectionLiveData(context)
         connectionLiveData.observeForever {
@@ -35,6 +43,12 @@ object CheckConnectivityModule {
         }
     }
 
+
+    /**
+     * This method return Internet connection state.
+     * @return This returns connectivity state.
+     * The return type is enum class
+     */
     fun checkHasConnectionAndInternet(): ConnectivityState {
         return if (!hasConnection) {
             ConnectivityState.NOCONNECTION
