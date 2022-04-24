@@ -21,8 +21,8 @@ import javax.net.SocketFactory
 object CheckConnectivityModule {
 
 
-    private var hasInternet: Boolean = false
-    private var hasConnection: Boolean = false
+    private var hasInternet: Boolean = true
+    private var hasConnection: Boolean = true
 
     /**
      * This method have to use in application class.
