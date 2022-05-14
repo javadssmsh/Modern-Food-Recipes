@@ -21,6 +21,8 @@ abstract class HomeBindingModule {
 }
 
 
+
+
 @Module
 @InstallIn(ActivityRetainedComponent::class)
 open class HomeModule {
